@@ -12,28 +12,28 @@ async function sharedMetaData(params) {
     title: {
       default:
         settings?.title ||
-        "Stablo - Blog Template for Next.js & Sanity CMS",
-      template: "%s | Stablo"
+        "Bookology - Explore the World of Books",
+      template: "%s | Bookology"
     },
     description:
       settings?.description ||
-      "Stablo - popular open-source next.js and sanity blog template",
-    keywords: ["Next.js", "Sanity", "Tailwind CSS"],
-    authors: [{ name: "Surjith" }],
+      "Bookology - a journey through the pages of fascinating books. Join us as we discuss our latest reads and upcoming literary adventures.",
+    keywords: ["Books", "Reading", "Book Reviews", "Book Recommendations", "Literature"],
+    authors: [{ name: "Omar Mason" }],
     canonical: settings?.url,
     openGraph: {
       images: [
         {
           url:
             urlForImage(settings?.openGraphImage)?.src ||
-            "/img/opengraph.jpg",
+            "/img/bookology-opengraph.jpg",  // Ensure you have an appropriate image at this path
           width: 800,
           height: 600
         }
       ]
     },
     twitter: {
-      title: settings?.title || "Stablo Template",
+      title: settings?.title || "Bookology - Discover Your Next Read",
       card: "summary_large_image"
     },
     robots: {
@@ -41,23 +41,23 @@ async function sharedMetaData(params) {
       follow: true
     }
   };
-}
+};
 
-export async function generateMetadata({ params }) {
-  return await sharedMetaData(params);
-}
+  export async function generateMetadata({ params }) {
+    return await sharedMetaData(params);
+  }
 
-export default async function Layout({ children, params }) {
-  const settings = await getSettings();
-  return (
-    <>
-      <Navbar {...settings} />
+  export default async function Layout({ children, params }) {
+    const settings = await getSettings();
+    return (
+      <>
+        <Navbar {...settings} />
 
-      <div>{children}</div>
+        <div>{children}</div>
 
-      <Footer {...settings} />
-    </>
-  );
-}
+        <Footer {...settings} />
+      </>
+    );
+  }
 // enable revalidate for all pages in this layout
 // export const revalidate = 60;
